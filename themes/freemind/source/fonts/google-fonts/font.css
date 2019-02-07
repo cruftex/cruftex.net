@@ -1,0 +1,288 @@
+@font-face {
+	font-family: 'Merriweather Sans';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		local('Merriweather Sans'),
+		local('MerriweatherSans-Regular'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/AKu1CjQ4qnV8MUltkAX3sE2k4ogKuXZ6cvJ9G6hiscg.eot */
+		url('Merriweather_Sans_400.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/AKu1CjQ4qnV8MUltkAX3sL2aU247V0zTzydO4RoO9Ok.woff */
+		url('Merriweather_Sans_400.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/AKu1CjQ4qnV8MUltkAX3sMZ4HySTEWshgORbPp2tk8k.woff2 */
+		url('Merriweather_Sans_400.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=AKu1CjQ4qnV8MUltkAX3sBSsawf2cF_d9q9gtt4yBuk&skey=d5dbcab03e19f051#MerriweatherSans */
+		url('Merriweather_Sans_400.svg#MerriweatherSans') format('svg'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/AKu1CjQ4qnV8MUltkAX3sFBI1aZvkJLeFEwcwXkBYq0.ttf */
+		url('Merriweather_Sans_400.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Merriweather Sans';
+	font-style: italic;
+	font-weight: 400;
+	src:
+		local('Merriweather Sans Italic'),
+		local('MerriweatherSans-Italic'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/3Mz4hOHzs2npRMG3B1ascT73cJzAx8H21t3siz5PJJM.eot */
+		url('Merriweather_Sans_400italic.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/3Mz4hOHzs2npRMG3B1ascf0KIgDhPIHb_R-SWdtqte8.woff */
+		url('Merriweather_Sans_400italic.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/3Mz4hOHzs2npRMG3B1ascefU2ka509O1odprhyXBUMU.woff2 */
+		url('Merriweather_Sans_400italic.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=3Mz4hOHzs2npRMG3B1ascWLjQhJN2InzDCEXlWgBuF0&skey=72a671c1f23a2f55#MerriweatherSans */
+		url('Merriweather_Sans_400italic.svg#MerriweatherSans') format('svg'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/3Mz4hOHzs2npRMG3B1ascbearE5_VzBcjtDoaNr3b3c.ttf */
+		url('Merriweather_Sans_400italic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Merriweather Sans';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		local('Merriweather Sans Bold'),
+		local('MerriweatherSans-Bold'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/6LmGj5dOJopQKEkt88GowaD2fnm4z6Nq0x6aGUXpBdU.eot */
+		url('Merriweather_Sans_700.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/6LmGj5dOJopQKEkt88GowQfd-b-I5PxxcmB4_-MNcqw.woff */
+		url('Merriweather_Sans_700.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/6LmGj5dOJopQKEkt88GowbvMLSVzqOGkoxdgTSsKqWM.woff2 */
+		url('Merriweather_Sans_700.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=6LmGj5dOJopQKEkt88GowWP5VslNTEcDcw1F0gKB_1Y&skey=d85cd7b3d911b492#MerriweatherSans */
+		url('Merriweather_Sans_700.svg#MerriweatherSans') format('svg'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/6LmGj5dOJopQKEkt88GowfqJSHIsY8pKqTgTouATXAk.ttf */
+		url('Merriweather_Sans_700.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Merriweather Sans';
+	font-style: italic;
+	font-weight: 700;
+	src:
+		local('Merriweather Sans Bold Italic'),
+		local('MerriweatherSans-BoldItalic'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/nAqt4hiqwq3tzCecpgPmVQHKcHgsjoggO6IrKqD_mBM.eot */
+		url('Merriweather_Sans_700italic.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/nAqt4hiqwq3tzCecpgPmVYM8pfYvjMoOxygpzLVILAs.woff */
+		url('Merriweather_Sans_700italic.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/nAqt4hiqwq3tzCecpgPmVafo0sDQ75c9ExQ-26lwTdA.woff2 */
+		url('Merriweather_Sans_700italic.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=nAqt4hiqwq3tzCecpgPmVc_JO2nlopTfM618HGSBb2M&skey=7feceef78736c4e8#MerriweatherSans */
+		url('Merriweather_Sans_700italic.svg#MerriweatherSans') format('svg'),
+		/* from http://fonts.gstatic.com/s/merriweathersans/v7/nAqt4hiqwq3tzCecpgPmVQqfFxSJsGWORebWzQ_6S3g.ttf */
+		url('Merriweather_Sans_700italic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Merriweather';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		local('Merriweather'),
+		local('Merriweather-Regular'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/RFda8w1V0eDZheqfcyQ4EHZ2MAKAc2x4R1uOSeegc5U.eot */
+		url('Merriweather_400.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/RFda8w1V0eDZheqfcyQ4EHhCUOGz7vYGh680lGh-uXM.woff */
+		url('Merriweather_400.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/RFda8w1V0eDZheqfcyQ4EOgdm0LZdjqr5-oayXSOefg.woff2 */
+		url('Merriweather_400.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=RFda8w1V0eDZheqfcyQ4EFlIn5tFQcqMuf-jhyJP0ps&skey=379c1eccf863c625#Merriweather */
+		url('Merriweather_400.svg#Merriweather') format('svg'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/RFda8w1V0eDZheqfcyQ4EInF5uFdDttMLvmWuJdhhgs.ttf */
+		url('Merriweather_400.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Merriweather';
+	font-style: italic;
+	font-weight: 400;
+	src:
+		local('Merriweather Italic'),
+		local('Merriweather-Italic'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/So5lHxHT37p2SS4-t60SlDoGYR7Z3iWH66EXnaJoKgg.eot */
+		url('Merriweather_400italic.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/So5lHxHT37p2SS4-t60SlHpumDtkw9GHrrDfd7ZnWpU.woff */
+		url('Merriweather_400italic.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/So5lHxHT37p2SS4-t60SlBMBlNeli-0RcAdOFWWLdxQ.woff2 */
+		url('Merriweather_400italic.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=So5lHxHT37p2SS4-t60SlH2UFnxWCzsMUZbVj2XRF5M&skey=899922b35e8afa66#Merriweather */
+		url('Merriweather_400italic.svg#Merriweather') format('svg'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/So5lHxHT37p2SS4-t60SlCtfYakCkPqOMDce0h_3gD8.ttf */
+		url('Merriweather_400italic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Merriweather';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		local('Merriweather Bold'),
+		local('Merriweather-Bold'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/ZvcMqxEwPfh2qDWBPxn6nmmsoyWrDyoltQVIP7q_RGg.eot */
+		url('Merriweather_700.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/ZvcMqxEwPfh2qDWBPxn6nnl4twXkwp3_u9ZoePkT564.woff */
+		url('Merriweather_700.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/ZvcMqxEwPfh2qDWBPxn6nnNuWYKPzoeKl5tYj8yhly0.woff2 */
+		url('Merriweather_700.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=ZvcMqxEwPfh2qDWBPxn6ngay50PuN8loMJ9QAXsTs7U&skey=76f88370d7055e09#Merriweather */
+		url('Merriweather_700.svg#Merriweather') format('svg'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/ZvcMqxEwPfh2qDWBPxn6nn06qf9KHRHwsVx7iw5MXmY.ttf */
+		url('Merriweather_700.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Merriweather';
+	font-style: italic;
+	font-weight: 700;
+	src:
+		local('Merriweather Bold Italic'),
+		local('Merriweather-BoldItalic'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/EYh7Vl4ywhowqULgRdYwICy7jlJQNiTiB3-MejPw_5E.eot */
+		url('Merriweather_700italic.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/EYh7Vl4ywhowqULgRdYwIL0qgHI2SEqiJszC-CVc3gY.woff */
+		url('Merriweather_700italic.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/EYh7Vl4ywhowqULgRdYwIEcqRxak6Wc5LUVz-l064SE.woff2 */
+		url('Merriweather_700italic.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=EYh7Vl4ywhowqULgRdYwIOiOBN1C42tFdXFKJTGlCXo&skey=a01d7ebb04b59d3d#Merriweather */
+		url('Merriweather_700italic.svg#Merriweather') format('svg'),
+		/* from http://fonts.gstatic.com/s/merriweather/v11/EYh7Vl4ywhowqULgRdYwICxQL91WRy8t8mPvAX_dIgA.ttf */
+		url('Merriweather_700italic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Droid Serif';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		local('Droid Serif'),
+		local('DroidSerif'),
+		/* from http://fonts.gstatic.com/s/droidserif/v6/0AKsP294HTD-nvJgucYTaGfQcKutQXcIrRfyR5jdjY8.eot */
+		url('Droid_Serif_400.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/droidserif/v6/0AKsP294HTD-nvJgucYTaIbN6UDyHWBl620a-IRfuBk.woff */
+		url('Droid_Serif_400.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/droidserif/v6/0AKsP294HTD-nvJgucYTaI4P5ICox8Kq3LLUNMylGO4.woff2 */
+		url('Droid_Serif_400.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=0AKsP294HTD-nvJgucYTaHNsigHlcrQGNV8nkUSFQfc&skey=a46d7e8bf49adcd6#DroidSerif */
+		url('Droid_Serif_400.svg#DroidSerif') format('svg'),
+		/* from http://fonts.gstatic.com/s/droidserif/v6/0AKsP294HTD-nvJgucYTaJ0EAVxt0G0biEntp43Qt6E.ttf */
+		url('Droid_Serif_400.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Droid Serif';
+	font-style: italic;
+	font-weight: 400;
+	src:
+		local('Droid Serif Italic'),
+		local('DroidSerif-Italic'),
+		/* from http://fonts.gstatic.com/s/droidserif/v6/cj2hUnSRBhwmSPr9kS5896SxSvC1lIsK_unZDHWqTBg.eot */
+		url('Droid_Serif_400italic.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/droidserif/v6/cj2hUnSRBhwmSPr9kS5899kZXW4sYc4BjuAIFc1SXII.woff */
+		url('Droid_Serif_400italic.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/droidserif/v6/cj2hUnSRBhwmSPr9kS5898u2Q0OS-KeTAWjgkS85mDg.woff2 */
+		url('Droid_Serif_400italic.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=cj2hUnSRBhwmSPr9kS589zGefNBPGWcFPRAoUX_lgLU&skey=5baf0548233ba076#DroidSerif */
+		url('Droid_Serif_400italic.svg#DroidSerif') format('svg'),
+		/* from http://fonts.gstatic.com/s/droidserif/v6/cj2hUnSRBhwmSPr9kS589-LrC4Du4e_yfTJ8Ol60xk0.ttf */
+		url('Droid_Serif_400italic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'PT Sans';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		local('PT Sans'),
+		local('PTSans-Regular'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/S1YQx4pVZa17uu0HWQd2fA.eot */
+		url('PT_Sans_400.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/LKf8nhXsWg5ybwEGXk8UBQ.woff */
+		url('PT_Sans_400.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/ATKpv8nLYAKUYexo8iqqrg.woff2 */
+		url('PT_Sans_400.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=-W_xG__5QLePeHob2L7z1Q&skey=fd0b32f0f3e6a1fc#PTSans */
+		url('PT_Sans_400.svg#PTSans') format('svg'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/FUDHvzEKSJww3kCxuiAo2A.ttf */
+		url('PT_Sans_400.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'PT Sans';
+	font-style: italic;
+	font-weight: 400;
+	src:
+		local('PT Sans Italic'),
+		local('PTSans-Italic'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/PIPMHY90P7jtyjpXuZ2cLPY6323mHUZFJMgTvxaG2iE.eot */
+		url('PT_Sans_400italic.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/PIPMHY90P7jtyjpXuZ2cLD8E0i7KZn-EPnyo3HZu7kw.woff */
+		url('PT_Sans_400italic.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/PIPMHY90P7jtyjpXuZ2cLFtXRa8TVwTICgirnJhmVJw.woff2 */
+		url('PT_Sans_400italic.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=PIPMHY90P7jtyjpXuZ2cLJbd9NUM7myrQQz30yPaGQ4&skey=cef7fd018888390e#PTSans */
+		url('PT_Sans_400italic.svg#PTSans') format('svg'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/PIPMHY90P7jtyjpXuZ2cLKCWcynf_cDxXwCLxiixG1c.ttf */
+		url('PT_Sans_400italic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'PT Sans';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		local('PT Sans Bold'),
+		local('PTSans-Bold'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/0XxGQsSc1g4rdRdjJKZrNFQlYEbsez9cZjKsNMjLOwM.eot */
+		url('PT_Sans_700.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/0XxGQsSc1g4rdRdjJKZrNBsxEYwM7FgeyaSgU71cLG0.woff */
+		url('PT_Sans_700.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/0XxGQsSc1g4rdRdjJKZrNPk_vArhqVIZ0nv9q090hN8.woff2 */
+		url('PT_Sans_700.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=0XxGQsSc1g4rdRdjJKZrNKWUboTb-jS2tyCOQMtm97g&skey=a45e760d002c9b10#PTSans */
+		url('PT_Sans_700.svg#PTSans') format('svg'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/0XxGQsSc1g4rdRdjJKZrNC3USBnSvpkopQaUR-2r7iU.ttf */
+		url('PT_Sans_700.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'PT Sans';
+	font-style: italic;
+	font-weight: 700;
+	src:
+		local('PT Sans Bold Italic'),
+		local('PTSans-BoldItalic'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/lILlYDvubYemzYzN7GbLkHZ2MAKAc2x4R1uOSeegc5U.eot */
+		url('PT_Sans_700italic.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/lILlYDvubYemzYzN7GbLkHhCUOGz7vYGh680lGh-uXM.woff */
+		url('PT_Sans_700italic.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/lILlYDvubYemzYzN7GbLkOgdm0LZdjqr5-oayXSOefg.woff2 */
+		url('PT_Sans_700italic.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=lILlYDvubYemzYzN7GbLkFlIn5tFQcqMuf-jhyJP0ps&skey=2b38b88a40bdc8ec#PTSans */
+		url('PT_Sans_700italic.svg#PTSans') format('svg'),
+		/* from http://fonts.gstatic.com/s/ptsans/v8/lILlYDvubYemzYzN7GbLkInF5uFdDttMLvmWuJdhhgs.ttf */
+		url('PT_Sans_700italic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'PT Sans Narrow';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		local('PT Sans Narrow'),
+		local('PTSans-Narrow'),
+		/* from http://fonts.gstatic.com/s/ptsansnarrow/v7/UyYrYy3ltEffJV9QueSi4T9sG6gyxihQGrqfBiBoCNc.eot */
+		url('PT_Sans_Narrow_400.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/ptsansnarrow/v7/UyYrYy3ltEffJV9QueSi4RdbPw3QSf9R-kE0EsQUn2A.woff */
+		url('PT_Sans_Narrow_400.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/ptsansnarrow/v7/UyYrYy3ltEffJV9QueSi4UU-p1xzoRgkupcXIqgYFBc.woff2 */
+		url('PT_Sans_Narrow_400.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=UyYrYy3ltEffJV9QueSi4Y9qashOVerhvngxLEi9cx0&skey=4fa1436033972818#PTSansNarrow */
+		url('PT_Sans_Narrow_400.svg#PTSansNarrow') format('svg'),
+		/* from http://fonts.gstatic.com/s/ptsansnarrow/v7/UyYrYy3ltEffJV9QueSi4UpeNX8RPf6i6WQfJWyCWEs.ttf */
+		url('PT_Sans_Narrow_400.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		local('Roboto'),
+		local('Roboto-Regular'),
+		/* from http://fonts.gstatic.com/s/roboto/v15/5YB-ifwqHP20Yn46l_BDhA.eot */
+		url('Roboto_400.eot?#iefix') format('embedded-opentype'),
+		/* from http://fonts.gstatic.com/s/roboto/v15/2UX7WLTfW3W8TclTUvlFyQ.woff */
+		url('Roboto_400.woff') format('woff'),
+		/* from http://fonts.gstatic.com/s/roboto/v15/CWB0XYA8bzo0kSThX0UTuA.woff2 */
+		url('Roboto_400.woff2') format('woff2'),
+		/* from http://fonts.gstatic.com/l/font?kit=_YZOZaQ9UBZzaxiLBLcgZg&skey=a0a0114a1dcab3ac#Roboto */
+		url('Roboto_400.svg#Roboto') format('svg'),
+		/* from http://fonts.gstatic.com/s/roboto/v15/zN7GBFwfMP4uA6AR0HCoLQ.ttf */
+		url('Roboto_400.ttf') format('truetype');
+}

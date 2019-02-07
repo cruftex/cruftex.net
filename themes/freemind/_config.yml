@@ -1,0 +1,69 @@
+slogan: ""
+
+theme: yeti
+inverse: false
+
+menu:
+  - title: Archives
+    url: archives
+    intro: "All the articles."
+    icon: "fa fa-archive"
+#  - title: Categories
+#    url: categories
+#    intro: "All the categories."
+#    icon: "fa fa-folder"
+#  - title: Tags
+#    url: tags
+#    intro: "All the tags."
+#    icon: "fa fa-tags"
+  - title: About
+    url: about.html
+    intro: "About me."
+    icon: "fa fa-user"
+  - title: RSS
+    url: atom.xml
+    intro: "Blog RSS feed."
+    icon: "fa fa-rss-square"
+
+
+links:
+  - title: "cache2k"
+    url: http://cache2k.org
+    intro: "cache2k"
+    icon: "fa fa-files-o"
+  - title: "Github"
+    url: https://www.github.com/cruftex
+    intro: "Github account."
+    icon: "fa fa-github"
+  - title: "Twitter"
+    url: https://www.twitter.com/cruftex
+    intro: "Twitter account."
+    icon: "fa fa-twitter"
+
+widgets:
+- search
+- category
+- tagcloud
+- recent_posts  
+- links
+
+rss: 
+fancybox: true
+favicon: favicon.png
+duoshuo_shortname:
+
+# Analytics
+google_analytics:
+  enable: false
+  siteid:
+baidu_tongji:
+  enable: false
+  siteid:
+
+# search
+# swiftype_key: ZP2ZSuHgipSZfRyU8uTR
+
+# share widgets
+bdshare: false
+jiathis: false
+

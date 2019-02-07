@@ -1,0 +1,29 @@
+<div id="page-heading-wrap">
+  	<div class="inner">
+      <div class="padding">
+    		<% if (page.layout == 'post') { %>
+          <h1><%= page.title %></h1>
+          <ul>
+            <li>
+              <time datetime="<%= page.date.toDate().toISOString() %>"><%= page.date.format(config.date_format) %></time>
+            </li>
+            <% if (config.author){ %>
+              <li>
+                <span class="heading-span">By: </span>
+
+                <% if (theme.personal_site){ %>
+                  <a href="<%= theme.personal_site %>" target="_blank"><%= config.author %></a>
+
+                <% } else { %>
+                  <a href="/"><%= config.author %></a>
+                <% } %>
+
+              </li>
+            <% } %>
+          </ul>
+        <% } else { %>
+          <h2><% if (config.subtitle){ %><%= config.subtitle %><% } %></h2>
+        <% } %>
+      </div>
+  	</div>
+  </div>

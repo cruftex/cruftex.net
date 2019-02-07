@@ -1,0 +1,52 @@
+<nav class="share" role="navigation">
+  <a
+      href="http://www.facebook.com/sharer/sharer.php?u=<%- url %>"
+      title="Share on Facebook" class="button">
+    <i class="icon fa fa-facebook"></i>
+  </a>
+  <a
+      href="https://twitter.com/share?url=<%- url %>&amp;text=<%- page.title %>"
+      title="Share on Twitter" class="button">
+    <i class="icon fa fa-twitter"></i>
+  </a>
+  <a
+      href="https://plus.google.com/share?url=<%- url %>"
+      title="Share on Google+" class="button">
+    <i class="icon fa fa-google-plus"></i>
+  </a>
+  <a
+      href="https://www.linkedin.com/cws/share?url=<%- url %>"
+      title="Share on LinkedIn" class="button">
+    <i class="icon fa fa-linkedin"></i>
+  </a>
+  <a
+      href="http://www.stumbleupon.com/submit?url=<%- url %>&amp;title=<%- page.title %>"
+      title="Share on StumbleUpon" class="button">
+    <i class="icon fa fa-stumbleupon"></i>
+  </a>
+  <a
+      href="http://del.icio.us/post?url=<%- url %>&amp;title=<%- page.title %>"
+      title="Share on Delicious" class="button">
+    <i class="icon fa fa-delicious"></i>
+  </a>
+  <a
+      href="http://digg.com/submit?phase=2&amp;url=<%- url %>&amp;title=<%- page.title %>"
+      title="Share on Digg" class="button">
+    <i class="icon fa fa-digg"></i>
+  </a>
+  <a href="http://reddit.com/submit?url=<%- url %>%3F2014-30&amp;title=<%- page.title %>"
+     title="Share on Reddit" class="button">
+    <i class="icon fa fa-reddit"></i>
+  </a>
+  <a
+      href="http://news.ycombinator.com/submitlink?u=<%- url %>&amp;t=<%- page.title %>"
+      title="Share on Hacker News" class="button">
+    <i class="icon fa fa-hacker-news"></i>
+  </a>
+</nav>
+<script>
+  $(function() {
+    populateShareCounts("<%- config.wingman.url %><%= url %>");
+  });
+</script>
+

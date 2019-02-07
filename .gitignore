@@ -1,0 +1,7 @@
+db.json
+node_modules/
+cruftex.net.iml
+debug.log
+.idea/
+public/
+*~
