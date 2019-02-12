@@ -14,8 +14,8 @@ scenario which stresses the caches in different aspects. Also, we will analyze i
 <!-- more -->
 
 Impatient readers can skip to the [Conclusion](#Conclusion). 
-In rest of the article below points are discussed:
-•	Two benchmark scenarios to utilize the different cache eviction algorithms.
+In the rest of the article below points are discussed:
+•	Two benchmark scenarios to use different cache eviction algorithms.
 •	Memory consumption and comparison between Jar file sizes for different implementations.
 
 <!-- toc -->
@@ -48,7 +48,7 @@ We will compare cache2k with these 'cache' implementations:
   
 ### JMH Setup
 
-The JMH command line arguments `-f 2 -wi 5 -w 30s -i 3 -r 30s` results in:
+The JMH command line arguments `-f 2 -wi 5 -w 30s -i 3 -r 30s` result in:
  
  - Forks: 2 (2 runs in a newly started JVM)
  - Warmup: 5 iterations, 30 seconds each
@@ -60,7 +60,7 @@ steadier behavior.
 
 ### Threads and Cores
 
-Number of threads are equal to the number of cores available in JVM. To disable cores we can use the 
+Number of threads are equal to the number of cores available in the JVM. To disable cores we can use the 
 Linux CPU hotplug feature. This way only enabled processors are exposed by the OS and output of 
 the Java method `Runtime.getRuntime().availableProcessors()` is equal to the number of usable physical 
 processor cores. No hyper threading is in effect.
@@ -71,7 +71,7 @@ In the below plots measuring units are in SI (base 10) which means 1MB is 10^6 b
 for operations/s and bytes/s are same. 
 
 Every bar chart has a confidence interval associated with it. This interval does not just represent the upper and 
-lower bounds of a measured value, but it shows range of potential values. Confidence interval is 
+lower bounds of a measured value, but it shows a range of potential values. Confidence interval is 
 calculated by JMH with a level of 99.9% (which means likelihood that the actual value is between the 
 shown interval is 99.9%). 
 
@@ -92,7 +92,7 @@ We have combined few such aspects into one benchmark:
 - A cache miss gets significant penalty by burning a defined amount of CPU cycles 
 - Read through operation which is commonly used, but may result in additional blocking overhead
 
-Access pattern is artificially generated via the so called Zipfian distribution. This access pattern represents simulation 
+Access pattern is artificially generated via the so-called Zipfian distribution. This access pattern represents simulation 
 of a skewed sequence typically found in applications these days. The Zipfian distribution is widely used for 
 benchmarking key/value stores. The algorithm was originally described in ["Quickly Generating Billion-Record Synthetic Databases", Jim Gray et al, SIGMOD 1994](http://dl.acm.org/citation.cfm?doid=191839.191886).
  
@@ -102,7 +102,7 @@ only covers the performance of cache access. This approach is tested in differen
 in few cases. If the sequence is too small, eviction algorithms can adapt to it and show unrealistic high hit rates. 
 Furthermore, a separate sequence is needed for each thread. To avoid any adapting effects on the repetition, the sequences 
 must be much longer then the cache size. Big cache sizes are like 10 million entries in the benchmark which is not feasible. 
-The best solution proved to be for this is online generation of the access sequence. The Zipfian generator implementation 
+The best solution proved to be for this is the online generation of the access sequence. The Zipfian generator implementation 
 from the Yahoo! YCSB benchmark was improved for a fast and slow overhead generation by replacing the used random number generator by the fast-random sequence generator `XorShift1024StarRandomGenerator` of the [DSI utilities](http://dsiutils.di.unimi.it/). This means, 
 the sequence generation and the creation of the integer objects for the cache keys is included in the performance measurements.
 
@@ -142,7 +142,7 @@ Let's take a look at the results for one, two and four cores:
 For the above graph [Alternative Image](CMS/ZipfianSequenceLoadingBenchmark-byThread-1Mx10-notitle-print.svg) and [Raw Data](CMS/ZipfianSequenceLoadingBenchmark-byThread-1Mx10.dat) is available. 
 
 EHCache2 does not scale well in this scenario with the additional cores, which is probably caused due to additional locking overhead in the blocking read through configuration. 
-Caffeine has low performance with one or two cores but much better performance with four cores. This is most likely caused due to the fact that Caffeine uses multiple threads for the eviction. With one or a few cores available the inter thread communication produces overhead and casues delay.
+Caffeine has low performance with one or two cores but better performance with four cores. This is most likely caused due to the fact that Caffeine uses multiple threads for the eviction. With one or a few cores available the inter thread communication produces overhead and causes delay.
 
 By varying the size of Zipfian distribution we can yield different hit rates. Below chart shows the performance with different Zipfian factors:
 
@@ -231,7 +231,7 @@ larger heaps, should not choose the G1 collector. The effects of G1 with large c
 deeper analysis in case this becomes more relevant in practice.
 
 This is an extreme test scenario to reveal limits of cache2k. We unintentionally constructed a scenario where the use of 
-G1 collector has a rather big performance loss. 10 million entries and a cache operating at a hit rate of 50% would
+G1 collector has rather big performance loss. 10 million entries and a cache operating at a hit rate of 50% would
 be a rare operating condition. Most likely this can be found in throughput oriented applications which should better
 choose the CMS collector. With normal working conditions as we have shown above, cache2k achieves 
 a performance gain with G1 as compared to other cache libraries. 
@@ -245,20 +245,20 @@ scanned entries in cache2k. In this chapter we investigate how the scan effort c
 size.
  
 When cache parameters are known there is a theoretical chance to construct an artificial access 
-pattern that triggers a full scan over all entries. Such a access pattern could be a vector for 
-DOS-attacks. But after the full scan, all access counters are zeroed and the attack sequence 
-needs to be repeated and cover all cached entries. The costs sending and processing the attack 
-sequence would thus be much higher then the caused damage.
+pattern that triggers a full scan over all entries. Such access pattern could be a vector for 
+DOS-attacks. But after full scan, all access counters are zeroed and the attack sequence 
+needs to be repeated and all cached entries need to be covered. The costs of sending and processing the attack 
+sequence would thus be much higher than the caused damage.
 
-Using the internal counters of cache2k, we can extract the average number of entries scanned per single eviction. 
-This allows us to get insight in the different eviction costs at different working
-conditions. Let's take a look how different cache sizes affect the number scans:
+Using the internal counters of cache2k, we can extract average number of entries scanned per eviction. 
+This allows us to get an insight into  different eviction costs at different working
+conditions. Let's look at how different cache sizes affect the number scans:
 
 {% asset_img CMS/RandomSequenceBenchmarkScanCount-bySize-4x80-notitle.svg 'RandomSequenceBenchmark, scan count by cache size at 4 threads and 80 percent target hit rate' %}
-For the graph above there is an [Alternative Image](CMS/RandomSequenceBenchmarkScanCount-bySize-4x80-notitle-print.svg) and [Raw Data](CMS/RandomSequenceBenchmarkScanCount-bySize-4x80.dat) available. 
+For the above graph [Alternative Image](CMS/RandomSequenceBenchmarkScanCount-bySize-4x80-notitle-print.svg) and [Raw Data](CMS/RandomSequenceBenchmarkScanCount-bySize-4x80.dat) is available. 
 
-This result is rather surprising. The scan counts are almost identical for the same hit rates for any cache size. 
-For reference the raw values:
+The results are rather surprising. Scan counts are almost equal for same hit rates for any cache size. 
+Raw values for reference:
   
 - Size 100K: 6.003983263650306
 - Size 1M: 6.004637918679662
@@ -272,57 +272,55 @@ For different hit rates the scan counts look like:
 {% asset_img CMS/RandomSequenceBenchmarkScanCount-byHitrate-4x1M-notitle.svg 'RandomSequenceBenchmark, scan count by hit rate at 4 threads and 1M cache size' %}
 For the graph above there is an [Alternative Image](CMS/RandomSequenceBenchmarkScanCount-byHitrate-4x1M-notitle-print.svg) and [Raw Data](CMS/RandomSequenceBenchmarkScanCount-byHitrate-4x1M.dat) available. 
 
-The scan count increases for higher hit rates, because all the cache contents become "hotter". 
+The scan count increases for higher hit rates because all the cache contents become 'hotter'. 
 The amount of additional scanning when hit rates become higher can be tuned by some internal parameters.
-As we can show with this benchmark, the tuning parameters are chosen in a way that the additional 
+As we can see with this benchmark, the tuning parameters are chosen in a way that additional 
 scanning work in the eviction, does not outweigh the performance gains of the improved hit rate.
-With high hit rates cache2k has still less overhead then other cache libraries.
+With high hit rates cache2k has still less overhead than other cache libraries.
 
 Finally, we take a look at the scan counts for the first benchmark:
 
 {% asset_img CMS/ZipfianSequenceLoadingBenchmarkScanCount-bySize-4x10-notitle.svg 'ZipfianSequenceLoadingBenchmark, scan count by cache size at 4 threads and Zipfian factor 10' %}
-For the graph above there is an [Alternative Image](CMS/ZipfianSequenceLoadingBenchmarkScanCount-bySize-4x10-notitle-print.svg) and [Raw Data](CMS/ZipfianSequenceLoadingBenchmarkScanCount-bySize-4x10.dat) available. 
+For the above graph [Alternative Image](CMS/ZipfianSequenceLoadingBenchmarkScanCount-bySize-4x10-notitle-print.svg) and [Raw Data](CMS/ZipfianSequenceLoadingBenchmarkScanCount-bySize-4x10.dat) is available. 
 
-For a typical skewed access sequence the average scan count is very low. In the tested scenarios it is
-below two. For realistic (means non-random) access sequences the experiment shows that the scan count 
-is decreasing for higher cache sizes. This practical result is in contradiction to the theoretical evaluation.
+For a typical skewed access sequence the average scan count is very low. In tested scenarios it is
+below two. For realistic (non-random) access sequences, experiment shows that the scan count 
+decreases for higher cache sizes. Result of this practical scenario is in contradiction to the theoretical evaluation.
 
 
 
 ## Memory Consumption
 
 For evaluation of the memory consumptions we use the first benchmark (`ZipfianSequenceLoadingBenchmark`). 
-The details of the metrics and measurement procedure were presented in a previous blog post 
+The details of metrics and measurement procedure were presented in a previous blog post 
 [The 6 Memory Metrics You Should Track in Your Java Benchmarks](https://cruftex.net/2017/03/28/The-6-Memory-Metrics-You-Should-Track-in-Your-Java-Benchmarks.html).
-For brevity we concentrate on two metrics only. *usedMem_settled* represents the used memory 
-that the JVM reports at the end of the benchmark. This is a static measure, and does not take into 
-account usage differences when operations are ongoing. The *VmHWM* metric represents the peak memory 
-consumption as reported by the operating system, thus also including dynamic effects like garbage collection.
+For concision we concentrate on two metrics only. *usedMem_settled* represents used memory 
+that the JVM reports at the end of the benchmark. This is a static measure and does not take into 
+account differences in usage when operations are ongoing. The *VmHWM* metric represents peak memory 
+consumption as reported by the operating system, thus it also includs dynamic effects like garbage collection.
 
 {% asset_img CMS/ZipfianSequenceLoadingBenchmarkStaticPeakMemory4-10M-5-notitle.svg 'ZipfianSequenceLoadingBenchmark, memory consumption with 10M cache size at 4 threads and Zipfian factor 5' %}
-For the graph above there is an [Alternative Image](CMS/ZipfianSequenceLoadingBenchmarkStaticPeakMemory4-10M-5-notitle-print.svg) and [Raw Data](CMS/ZipfianSequenceLoadingBenchmarkStaticPeakMemory4-10M-5.dat) available. 
+For the above graph [Alternative Image](CMS/ZipfianSequenceLoadingBenchmarkStaticPeakMemory4-10M-5-notitle-print.svg) and [Raw Data](CMS/ZipfianSequenceLoadingBenchmarkStaticPeakMemory4-10M-5.dat) is available. 
 
 In the tested scenario cache2k has 11% higher static memory consumption then Caffeine. In this scenario 
-the payload data (the keys and values) is only integer objects. With larger data sizes in practical applications, 
+the payload data (keys and values) is only integer objects. With larger data sizes in practical applications, 
 the difference in static memory consumption between the cache implementations would be much lower.
 
-The peak memory consumption differs more drastically. cache2k achieves a lower peak memory consumption because of its 
-low allocation rates, which leads to less garbage collector activity. Depending on the cache utilization, cache size
-and the hit rates the total memory consumption will differ. Here is a rather extreme example with the G1 collector:
+The peak memory consumption differs more drastically. Cache2k achieves a lower peak memory consumption because of its 
+low allocation rates which leads to less garbage collector activity. Depending on the cache utilization, cache size
+and hit rates, the total memory consumption will differ. Here is a rather extreme case example with the G1 collector:
 
 {% asset_img G1/ZipfianSequenceLoadingBenchmarkStaticPeakMemory4-1M-5-notitle.svg 'ZipfianSequenceLoadingBenchmark, memory consumption with 1M cache size at 4 threads and Zipfian factor 20' %}
-For the graph above there is an [Alternative Image](G1/ZipfianSequenceLoadingBenchmarkStaticPeakMemory4-1M-5-notitle-print.svg) and [Raw Data](G1/ZipfianSequenceLoadingBenchmarkStaticPeakMemory4-1M-5.dat) available. 
+For the above graph [Alternative Image](G1/ZipfianSequenceLoadingBenchmarkStaticPeakMemory4-1M-5-notitle-print.svg) and [Raw Data](G1/ZipfianSequenceLoadingBenchmarkStaticPeakMemory4-1M-5.dat) is available. 
 
-Interesting side note: Since the cache eviction produces garbage, increasing the cache size can have a 
-dramatic effect on the peak memory consumption and can actually lower the amount of needed memory, 
-since less breathing space for the garbage collector is needed. 
+Interesting side note: Since cache eviction produces garbage, increasing the cache size could have a 
+dramatic effect on the peak memory consumption and can actually lower the amount of needed memory, as less garbage collector needs less breathing space. 
 
-Looking only at the statically used heap memory, can give the wrong idea on the really used physical
-memory in operation.  
+Only the static used heap memory can give the wrong idea about the actual used physical memory in operation.  
 
 ## Jar File Sizes
 
-Finally let's take a look at the jar file sizes:
+Finally let's look at the jar file sizes:
 
 - caffeine-2.5.2.jar: 1.007.339 bytes
 - cache2k-all-1.0.0.Final.jar: 387.771 bytes
@@ -331,74 +329,73 @@ Finally let's take a look at the jar file sizes:
 - guava-20.0.jar: 2.442625 bytes
 - guava cache only alternative: com.nytimes.android:cache-2.0.3.jar: 160.474 bytes
 
-For Guava cache users that don't need the whole Guava library, New York Times provides a jar file that only 
-contains the cache functionality. For Android or environments where small (download) sizes matter Guava and 
-cache2k are the best choice. Compared to the features, the Caffeine jar is rather big, which is caused 
-by a high number of generated classes.
+For Guava cache users who don't need the whole Guava library, New York Times has provided a jar file which contains only
+the cache functionality. For Android or other environments where download sizes matter Guava and 
+cache2k are the best choices. Compared to other features the Caffeine jar is rather big due to high number of generated classes.
 
 
  
 ## Benchmark Shortcomings
  
 All of our benchmark scenarios intentionally stress the cache heavily to amplify differences in the 
-cache implementations and reveal weaknesses. The outcome in real applications will differ. 
+cache implementations and reveal weaknesses. The outcome in real applications will be much better. 
 
-Here is a summary of noteworthy things that may influence the real world performance:
+Here is a summary of noteworthy points that may influence the real world performance:
 
 - The value and key in the benchmark is only an integer object. Larger and more complex objects, will 
   lead to higher allocation rates. The overhead in the internal data structures of the cache becomes 
   less significant.
 - Different latency and CPU cycles for loading a cache value
 - CPU time used by the application
-- interactive or throughput oriented workload
-- selected garbage collector and its tuning values
+- Interactive or throughput oriented workload
+- Selected garbage collector and its tuning values
 - forced full GC between iterations may influence benchmark results
 - A real world access sequence is different to the Zipfian sequence
 
 The last point cannot be stressed enough. Testing with the Zipfian distribution is heavily in favor of 
-caches that keep entries longer that are accessed more often (frequency aspect). Since the access pattern is always
-in the identical value range, a cache could actually stop replacing entries after a set of hot entries is
-established. Next benchmarks should modify the value ranges to test the speed of adaption, e.g. in a phase
+caches which keep frequently used entries for longer time(frequency aspect). As the access pattern is always
+in same value range, a cache could actually stop replacing entries after a set of hot entries is
+established. Next benchmarks should modify the value ranges to test the speed of adaption e.g. in a phase
 change of the application.
 
 Running all benchmarks with CMS and G1 collector with the needed precision takes four days on one machine.
-Especially the large cache size of 10M needs longer benchmark run times. Because of the long running times, we only
+Especially the large cache size of 10M needs longer benchmark run times. Because of the time required for run, we could only
 test three variations of thread counts, cache size and hit rate each.
 
 
 
 ## Future Work
 
-A lot of work went into this blog post and at some time it is important to publish results rather than to
+A lot of work went into this blog post and at this point it is important to publish results rather than to
  continue digging deeper. This is what we left for the future:
 
-- Use a sweeping Zipfian sequence, to test adoption speed (see above) 
+- Use a sweeping Zipfian sequence, to test adaption speed (see above) 
 - Benchmarks with higher number of cores/threads
 - Benchmark with latency
 - Clock-Pro eviction: Analyze/compare the scan counts with the original algorithm
 - Clock-Pro eviction: Deeper analysis of worst case patterns close to 100% hit rate
-- Clock-Pro eviction: Capping the eviction scans, will reduce computing cost for random access patterns
-- Deeper analysis of the interaction with G1, e.g. benchmark runs with a finer variation of cache sizes
+- Clock-Pro eviction: Capping the eviction scans will reduce computing cost for random access patterns
+- Deeper analysis of the interaction with G1 e.g. benchmark runs with a finer variation of cache sizes
 - Improve cache2k eviction for the G1 collector
-- In general caching and GC interaction is worth further research, e.g. analyze balance between cache 
+- In general caching and GC interaction is worth further research  e.g. analyze balance between cache 
   size and GC activity 
 
 
 ## Conclusion
 
-cache2k uses an alternative eviction algorithm (Clock-Pro) that reduces the latency overhead of the cache access
-to a minimum. Analyzing the benchmark results we can see that cache2k has better performance then other caches
-when operating at high hit rates, approximately above 80%. With lower hit rates, that cause more eviction activity, 
+Cache2k uses an alternative eviction algorithm (Clock-Pro) that reduces the latency overhead of the cache access
+to a minimum. After analyzing the benchmark results we can see that cache2k has better performance than other caches
+when operating at high hit rates, approximately above 80%. With lower hit rates which cause more eviction activity, 
 the performance of cache2k is at least on the same level than other cache implementations.
 
-Since the Clock-Pro algorithm eviction runtime could theoretically grow linear to the cache size, cache2k contains 
-improvements over the original algorithm. Our experiments prove that the implementation performs stable in the worst 
+Since the Clock-Pro algorithm eviction runtime could theoretically grow linear with the cache size, cache2k shows 
+improvements over the original algorithm. Our experiments have proven that the implementation performance is stable in the worst 
 possible scenarios. Because of this intensive testing we can say that the implementation has production quality.
  
 As the achieved hit rates show, Caffeine and cache2k use both an effective and modern eviction algorithm that
 performs better than LRU for the Zipfian sequence. 
 
-Because of its low allocation rates, cache2k performs better with the upcoming G1 garbage collector then other 
+Because of its low allocation rates, cache2k performs better with the upcoming G1 garbage collector than other 
 caches in typical working conditions. 
 
 The memory overhead differs for each cache implementation. When compared to Guava or Caffeine, cache2k has 
