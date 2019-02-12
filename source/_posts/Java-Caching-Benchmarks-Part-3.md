@@ -18,6 +18,7 @@ Impatient readers can skip to the [Conclusion](#Conclusion).
 In the rest of the article below points are discussed:
 
 •	Two benchmark scenarios which use different cache eviction algorithms.
+
 •	Memory consumption and comparison between size of jar files for different implementations.
 
 <!-- toc -->
