@@ -83,7 +83,7 @@ shown interval is 99.9%).
 ## A Comprehensive Benchmark
 
 [Part 1](https://cruftex.net/2016/03/16/Java-Caching-Benchmarks-2016-Part-1.html) of the series was focused on comparing cache
-implementations to hashmaps in which case test scenario did not trigger the eviction while  [Part 2 (https://cruftex.net/2016/05/09/Java-Caching-Benchmarks-2016-Part-2.html) was focused on benchmarking different eviction algorithms. Both benchmarks were designed to test two different aspects of caching in isolation and they have given interesting insights in detailed aspects.
+implementations to hashmaps in which case test scenario did not trigger the eviction while  [Part 2 ](https://cruftex.net/2016/05/09/Java-Caching-Benchmarks-2016-Part-2.html) was focused on benchmarking different eviction algorithms. Both benchmarks were designed to test two different aspects of caching in isolation and they have given interesting insights in detailed aspects.
 
 However, outcome may be totally different in other scenarios such as if concurrent threads utilize the eviction algorithm as opposed to only one thread as in Part 2.
   
