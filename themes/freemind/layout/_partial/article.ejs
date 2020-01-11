@@ -33,8 +33,9 @@
       <% if (item.photos && item.photos.length){ %>
         <%- partial('post/gallery') %>
       <% } %>
-
+      <% if (config.wingman && config.wingman.url) {%>
 	  <%- partial('sharingButtons') %>
+      <% } %>
 	</div>
 
 

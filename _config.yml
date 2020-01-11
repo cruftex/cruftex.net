@@ -101,8 +101,9 @@ marked:
     gfm: true
     breaks: false
 
-wingman:
-  url: https://x.h7e.eu/sharecount?url=
+# disable sharing buttons 20200111;jw
+#wingman:
+#  url: https://x.h7e.eu/sharecount?url=
 
 plugins:
   - hexo-generator-robotstxt
