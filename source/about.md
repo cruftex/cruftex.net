@@ -18,10 +18,3 @@ I do not not assume any liability or guarantee for the contents of internet page
 on this page directly or indirectly refers. Visitors follow connections to other web pages at their 
 own risk.
 
-## Web analytics
-
-This page uses the analytics tool Piwik. The gathared information contains a 
-shortened IP address and does not include personal information. The information
-is only accessible by me and the operations team at headissue GmbH.
-
-<iframe style="border: 0; height: 200px; width: 600px;" src="https://z.h7e.eu/index.php?module=CoreAdminHome&action=optOut&language=en"></iframe>
