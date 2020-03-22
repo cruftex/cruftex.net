@@ -9,10 +9,12 @@ to do, when mingling with other people.
 
 ## The CDC says
 
-> CDC does not recommend that people who are well wear a facemask to protect themselves 
-> from respiratory illnesses, including COVID-19. You should only wear a mask if a healthcare 
-> professional recommends it. A facemask should be used by people who have COVID-19 and are 
-> showing symptoms.”
+On there prevention recommendations webpage at https://www.cdc.gov/coronavirus/2019-ncov/prepare/prevention.html
+the CDC says:
+
+> If you are NOT sick: You do not need to wear a facemask unless you are caring 
+> for someone who is sick (and they are not able to wear a facemask). Facemasks 
+> may be in short supply and they should be saved for caregivers.
 
 The CDC is wrong.
 
