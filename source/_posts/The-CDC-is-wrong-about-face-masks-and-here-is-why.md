@@ -39,6 +39,8 @@ in clinics, they primarily help avoidig speard of the vires.
 
 Face masks can be mass produced like toilet paper and plastic bags. So are we wasting resources?
 
+And what about beeing in short supply? Please understand how free market works: First deamnd, then supply!
+
 ## Prioritize
 
 If there are really not enough masks, start with:
