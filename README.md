@@ -15,11 +15,21 @@ pnpm install          # once
 pnpm dev              # http://localhost:4321, shows drafts
 pnpm build            # dist/ (runs astro check, the build and the Pagefind index)
 pnpm preview          # serve dist/
-make up               # rsync dist/ to KeyCDN
+make up               # upload dist/ to the bunny.net storage zone and purge
+                      # the CDN cache (needs BUNNY_API_KEY in the environment)
+make up-clean         # also delete old hashed assets, a while after `make up`
+make up-preview       # same upload to the preview bucket
 pnpm update && pnpm audit   # Dependabot alerts: refresh the lockfile; for
                             # transitive packages `pnpm audit --fix` adds
                             # overrides to pnpm-workspace.yaml
 ```
+
+Deployment uses rclone with the S3 remotes `prod-cruftex-net` and
+`preview-cruftex-net` from `~/.config/rclone/rclone.conf` (endpoint
+`https://de-s3.storage.bunnycdn.com`, bucket name = remote name). The upload
+runs in three steps, resources, then pages, then cleanup, so a page never
+points at a missing file; the pull zone id is in the Makefile, the storage
+zone's 404 file path must be `/404.html`.
 
 ## Writing a post
 
