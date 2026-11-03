@@ -95,6 +95,9 @@ function serveAssets(req, res, next) {
   fs.createReadStream(file).pipe(res);
 }
 
+/** The chart spec of a post is build input, not a published asset. */
+const notSpec = src => path.basename(src) !== "charts.mjs";
+
 function writeFile(file, content) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, content);
@@ -135,7 +138,7 @@ export default function legacyUrls({ redirects = {} } = {}) {
           const hasAssets =
             fs.existsSync(assets) && fs.statSync(assets).isDirectory();
           if (hasAssets && fs.existsSync(pageDir)) {
-            fs.cpSync(assets, pageDir, { recursive: true });
+            fs.cpSync(assets, pageDir, { recursive: true, filter: notSpec });
           }
 
           if (fm.legacyUrl) {
@@ -149,6 +152,7 @@ export default function legacyUrls({ redirects = {} } = {}) {
                 recursive: true,
                 force: false,
                 errorOnExist: false,
+                filter: notSpec,
               });
             }
             count++;

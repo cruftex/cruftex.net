@@ -16,7 +16,7 @@ pnpm dev              # http://localhost:4321, shows drafts
 pnpm build            # dist/ (runs astro check, the build and the Pagefind index)
 pnpm preview          # serve dist/
 make up               # upload dist/ to the bunny.net storage zone and purge
-                      # the CDN cache (needs BUNNY_API_KEY in the environment)
+                      # the CDN cache (secrets from the keyring, see Hosting)
 make up-clean         # also delete old hashed assets, a while after `make up`
 make up-preview       # same upload to the preview bucket
 pnpm update && pnpm audit   # Dependabot alerts: refresh the lockfile; for
@@ -24,12 +24,7 @@ pnpm update && pnpm audit   # Dependabot alerts: refresh the lockfile; for
                             # overrides to pnpm-workspace.yaml
 ```
 
-Deployment uses rclone with the S3 remotes `prod-cruftex-net` and
-`preview-cruftex-net` from `~/.config/rclone/rclone.conf` (endpoint
-`https://de-s3.storage.bunnycdn.com`, bucket name = remote name). The upload
-runs in three steps, resources, then pages, then cleanup, so a page never
-points at a missing file; the pull zone id is in the Makefile, the storage
-zone's 404 file path must be `/404.html`.
+Deployment is described under "Hosting" below.
 
 ## Writing a post
 
@@ -148,6 +143,69 @@ the old tag pages (`/tags/Java/`) and the year and month archives
 (`/archives/2016/03/`) are redirected the same way (`redirects` in
 `astro.config.ts`). The feed stays at `/atom.xml`, the sitemap is also
 written under its old name `/sitemap.xml`.
+
+## Hosting (bunny.net)
+
+The site is a bunny.net storage zone, `prod-cruftex-net` (S3 endpoint
+`https://de-s3.storage.bunnycdn.com`, `preview-cruftex-net` for previews),
+with pull zone 6774870 in front of it. The Makefile hands rclone the bucket
+as an on-the-fly remote (`:s3:<zone>/`, endpoint and provider in
+`RCLONE_S3_*` variables), so there is no `rclone.conf` to maintain. bunny's S3 gateway rejects a share of requests at random (404 "NoSuchBucket",
+"object not found", dropped connections), so "Failed to copy" lines in the
+output are normal: rclone retries each step until it is clean, and
+`make check` verifies every file by checksum before the purge. Only a step
+that still fails after all retries is a real problem.
+
+`make up` uploads in three steps, resources, then the pages that reference
+them, then the cleanup, so a page never points at a missing file. Hashed
+assets under `_astro/` are kept until `make up-clean`, so pages cached in
+the CDN or in a browser keep working after a deploy. The last step purges
+the pull zone cache.
+
+### Secrets
+
+The storage zone password (bunny: the zone's password is the S3 secret, the
+zone name is the access key) and the API key live in the desktop keyring and
+are read with `secret-tool lookup` when a deploy target runs; nothing is
+stored in the repo or in a config file. Store them once:
+
+```sh
+secret-tool store --label="bunny.net storage zone prod-cruftex-net" service bunny.net zone prod-cruftex-net
+secret-tool store --label="bunny.net storage zone preview-cruftex-net" service bunny.net zone preview-cruftex-net
+secret-tool store --label="bunny.net API key" service bunny.net key api
+```
+
+`secret-tool` talks to whatever owns `org.freedesktop.secrets` on the
+session bus. Here that is KeePassXC: Tools → Settings → Secret Service
+Integration must be enabled, the database must expose a group for it
+(Database Settings → Secret Service Integration) and must be unlocked while
+`make up` runs. Each secret is looked up once per run, at the start, so
+with KeePassXC's "Confirm when passwords are retrieved by clients" on,
+`make up` asks twice (zone password, API key) and then runs through.
+Switching that option off removes the prompts, at the price that any
+program in the session can read the exposed group. On a machine without a
+keyring, exporting
+`AWS_ACCESS_KEY_ID` (the zone name), `AWS_SECRET_ACCESS_KEY` and
+`BUNNY_API_KEY` in the environment takes precedence over the keyring.
+
+Settings in the bunny panel:
+
+- Storage zone, Error handling: 404 file path `/404.html` (the built page
+  reports the missing URL to PostHog).
+- Pull zone defaults: CDN cache 1 month, browser cache 10 minutes. This
+  covers HTML, the feed, the sitemap and the files in the post folders; a
+  deploy purges the CDN, and a browser is at most 10 minutes behind.
+- Edge rule for `*/_astro/*`: CDN cache 1 year, browser cache 1 year,
+  response header `Cache-Control: public, max-age=31536000, immutable`.
+  Everything under `_astro/` is named by its content hash.
+
+The files in the post folders (charts, data, images), the favicon, the OG
+images, feed and sitemap keep their stable, unhashed URLs on purpose: they
+are deep-linked, they are the targets of the old-URL redirects and the URL
+equals the repo layout. No subresource integrity hashes: all scripts and
+styles come from the same origin as the pages, so SRI would not add a
+defence, while a stale CDN object would turn into a page without
+JavaScript.
 
 ## What was changed in the theme
 
