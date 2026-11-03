@@ -1,0 +1,6 @@
+# recovered from the 2016 gnuplot SVG, precision about 0.05 percentage points
+size OPT LRU CLOCK EHCache2 Guava Caffeine cache2k RAND
+75 51.99 33.24 33.52 29.38 32.72 27.20 30.03 20.29
+300 66.85 49.01 49.79 46.30 48.90 49.08 51.87 37.26
+1200 79.12 66.85 67.60 66.36 66.85 69.28 70.76 57.96
+3000 84.24 76.47 76.85 76.31 76.45 77.08 78.39 66.50

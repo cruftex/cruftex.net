@@ -1,7 +1,43 @@
-db.json
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
 node_modules/
-cruftex.net.iml
-debug.log
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
 .idea/
-public/
+
+# pagefind
+public/pagefind
+
+# pnpm
+.pnpm-store
+
+# docker compose
+compose.override.yaml
+
+# editor backups
 *~
+*.iml
+
+# hexo leftovers
+db.json
+debug.log
+# charts are rendered at build time (src/charts/)
+*.chart.svg

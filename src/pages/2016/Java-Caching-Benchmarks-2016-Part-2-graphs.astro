@@ -1,0 +1,59 @@
+---
+/**
+ * Companion page of "Java Caching Benchmarks 2016 - Part 2": the hit rate
+ * graphs for all traces. The URL is kept from the old site because the post
+ * and external pages link here; the old gnuplot SVGs stay in
+ * public/2016/... so their URLs keep working as well.
+ */
+import fs from "node:fs";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import Chart from "@/components/Chart.astro";
+import config from "@/config";
+
+const title = "Java Caching Benchmarks 2016 - Part 2 - The Graphs";
+const post = "java-caching-benchmarks-2016-part-2";
+const graphs = fs
+  .readdirSync(`src/content/posts/${post}`)
+  .filter(f => /^trace.*hitrateProducts\.dat$/.test(f))
+  .sort()
+  .map(f => ({
+    data: `${post}/${f}`,
+    // traceUmassFinancial1hitrateProducts.dat -> UmassFinancial1
+    trace: f.replace(/^trace/, "").replace(/hitrateProducts\.dat$/, ""),
+  }));
+const sizes = (x: string) => Number(x).toLocaleString("en-US");
+---
+
+<Layout
+  title={`${title} | ${config.site.title}`}
+  description="Hit rate graphs for all traces of the 2016 eviction efficiency comparison."
+>
+  <Header />
+  <Main pageTitle={title} class="app-prose">
+    <p>
+      Graphs for all traces from the post{" "}
+      <a href={`/${post}`}>Java Caching Benchmarks 2016 - Part 2</a>. The hit
+      rate is shown by cache size; OPT is the theoretical optimum, RAND evicts
+      at random.
+    </p>
+    {
+      graphs.map(({ data, trace }) => (
+        <Chart
+          data={data}
+          title={`Hit rate by cache size, ${trace} trace`}
+          caption={`Hit rate by cache size for the ${trace} trace.`}
+          note="OPT = optimal replacement (Belady), RAND = random eviction; LRU and CLOCK are reference implementations from cache2k-benchmark."
+          preset="lines"
+          unit="%"
+          yLabel="hit rate in %"
+          xAxisLabel="cache size (entries)"
+          xLabel={sizes}
+        />
+      ))
+    }
+  </Main>
+  <Footer />
+</Layout>

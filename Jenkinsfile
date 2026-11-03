@@ -1,27 +1,28 @@
 pipeline {
     agent {
-        // FIXME: we need a node with npm/node installed?
+        // needs Node 24 (see .nvmrc); pnpm is pinned via package.json "packageManager"
         label 'self'
     }
     stages {
-        stage('npm install') {
+        stage('install') {
             steps {
-                sh 'npm install'
+                sh 'corepack enable pnpm'
+                sh 'pnpm install --frozen-lockfile'
             }
         }
-        stage('hexo generate') {
+        stage('build') {
             steps {
-                sh './hexo generate --drafts'
+                sh 'pnpm build'
             }
         }
-      	stage('archive') {
-          	steps {
-                publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'public', reportFiles: 'index.html', reportName: 'Web Site'])
-        		dir('public') {
-            		sh 'tar cvfz ../cruftex.net.tar.gz ./*'
-        		}
-        		archive 'cruftex.net.tar.gz'
-    		}
+        stage('archive') {
+            steps {
+                publishHTML(target: [allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'dist', reportFiles: 'index.html', reportName: 'Web Site'])
+                dir('dist') {
+                    sh 'tar cvfz ../cruftex.net.tar.gz ./*'
+                }
+                archive 'cruftex.net.tar.gz'
+            }
         }
     }
 }

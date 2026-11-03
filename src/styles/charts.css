@@ -1,0 +1,181 @@
+/* Chart tokens and figure chrome for the Observable Plot charts (src/charts/). */
+
+/* Light values; the same declarations live inside every standalone SVG file,
+   this selector is more specific so the page wins when the SVG is inlined. */
+.chart-figure,
+.chart-figure svg.plot-chart {
+  --chart-1: #2a78d6;
+  --chart-2: #eb6834;
+  --chart-3: #1baf7a;
+  --chart-4: #eda100;
+  --chart-5: #e87ba4;
+  --chart-6: #008300;
+  --chart-7: #6250d6;
+  --chart-8: #e34948;
+  --chart-ref-1: #6f6e6a;
+  --chart-ref-2: #a8a69e;
+  --chart-ink: #282728;
+  --chart-muted: #6b7280;
+  --chart-grid: #e4e1e1;
+  --chart-axis: #b4b0b0;
+  --chart-surface: #fdfdfd;
+  --chart-font: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+
+[data-theme="dark"] .chart-figure,
+[data-theme="dark"] .chart-figure svg.plot-chart {
+  --chart-1: #3987e5;
+  --chart-2: #d95926;
+  --chart-3: #199e70;
+  --chart-4: #c98500;
+  --chart-5: #d55181;
+  --chart-6: #008300;
+  --chart-7: #9085e9;
+  --chart-8: #e66767;
+  --chart-ref-1: #a8a69e;
+  --chart-ref-2: #6f6e6a;
+  --chart-ink: #e7eaef;
+  --chart-muted: #aab3c0;
+  --chart-grid: #3b4453;
+  --chart-axis: #56607a;
+  --chart-surface: #1b2027;
+  --chart-font: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+
+/* figure chrome, after the Timor-Leste report */
+#article,
+.app-prose {
+  counter-reset: figure;
+}
+
+.chart-figure {
+  counter-increment: figure;
+  margin: 2rem 0;
+}
+
+.chart-card {
+  position: relative;
+  background: color-mix(in oklab, var(--background) 94%, var(--foreground));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 0.75rem 0.5rem;
+}
+
+.chart-figure .chart-scroll {
+  overflow-x: auto;
+}
+
+.chart-figure svg.plot-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 480px;
+}
+
+.chart-figure .chart-sub {
+  margin: 0.5rem 0.25rem 0.25rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+.chart-figure figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--foreground);
+  opacity: 0.85;
+}
+
+.chart-figure .fignum::before {
+  content: "Figure " counter(figure) ". ";
+  font-weight: 600;
+}
+
+.chart-figure .chart-source {
+  color: var(--muted-foreground);
+}
+
+/* hover: the mark lights up, the tooltip (src/scripts/chart-tooltips.ts) follows the pointer */
+.chart-figure svg.plot-chart [data-x] {
+  cursor: default;
+  outline: none;
+}
+
+/* whiskers and gridlines sit on top of the bars but must not catch the pointer */
+.chart-figure svg.plot-chart [aria-label="rule"],
+.chart-figure svg.plot-chart [aria-label="tick"],
+.chart-figure svg.plot-chart [aria-label="grid"] {
+  pointer-events: none;
+}
+
+.chart-figure svg.plot-chart [data-x]:hover,
+.chart-figure svg.plot-chart [data-x]:focus-visible {
+  filter: brightness(1.15);
+}
+
+.chart-tip {
+  position: absolute;
+  z-index: 10;
+  display: none;
+  min-width: 10rem;
+  max-width: 22rem;
+  padding: 0.5rem 0.7rem;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--foreground);
+  pointer-events: none;
+}
+
+.chart-tip.is-visible {
+  display: block;
+}
+
+.chart-tip-head {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.chart-tip table {
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* the prose table styles must not reach into the tooltip */
+.chart-tip table,
+.chart-tip tbody,
+.chart-tip tr,
+.app-prose .chart-tip td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.app-prose .chart-tip td {
+  padding: 0.1rem 0.4rem 0.1rem 0;
+}
+
+.app-prose .chart-tip td.num {
+  text-align: right;
+  padding-left: 0.5rem;
+}
+
+.chart-tip tr.is-active td {
+  font-weight: 600;
+}
+
+.chart-tip .swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 2px;
+  vertical-align: 0;
+}

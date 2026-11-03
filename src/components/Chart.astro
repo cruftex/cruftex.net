@@ -1,0 +1,58 @@
+---
+/**
+ * Build-time chart for .astro and .mdx pages: renders a chart spec with
+ * Observable Plot (src/charts/) and inlines the SVG in the same figure
+ * markup the posts get. Posts normally reference a generated SVG as an
+ * image instead; this component is for pages that have no chart file,
+ * e.g. the 2016 graphs page.
+ *
+ *   <Chart data="java-caching-benchmarks-2016-part-2/traceOltphitrateProducts.dat"
+ *          preset="lines" unit="%" title="..." caption="..." note="..." />
+ *
+ * `data` is a path below src/content/posts/; the raw data is linked in the
+ * caption at /<post>/<file> unless `dataLink` is false.
+ */
+import fs from "node:fs";
+import path from "node:path";
+import type { Element } from "hast";
+import { toHtml } from "hast-util-to-html";
+import { parseDat } from "@/charts/dat.mjs";
+import { renderChart } from "@/charts/render.mjs";
+import { chartElement, chartFigure } from "@/plugins/rehype-charts.mjs";
+
+interface Props {
+  data: string;
+  title: string;
+  caption?: string;
+  note?: string;
+  preset?: "bars" | "lines";
+  unit?: string;
+  yLabel?: string;
+  xAxisLabel?: string;
+  xLabel?: Record<string, string> | ((x: string) => string);
+  series?: string[];
+  height?: number;
+  dataLink?: boolean;
+}
+
+const { data, caption, dataLink = true, ...spec } = Astro.props;
+const [post, ...rest] = data.split("/");
+const file = rest.join("/");
+const table = parseDat(
+  fs.readFileSync(path.join("src/content/posts", data), "utf8")
+);
+const svgText = renderChart({ ...spec, data: file, dataLink }, table, {
+  id: `chart-${data.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`,
+});
+const chart = chartElement(svgText);
+if (!chart) throw new Error(`chart ${data} did not render`);
+const figure = chartFigure(chart.svg, {
+  caption,
+  note: spec.note,
+  post,
+  data: dataLink ? file : undefined,
+}) as unknown as Element;
+const html = toHtml(figure);
+---
+
+<Fragment set:html={html} />

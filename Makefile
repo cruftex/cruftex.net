@@ -1,16 +1,16 @@
-
 all:	node_modules
-	./hexo generate
+	pnpm build
 
 node_modules:
-	npm install	
+	pnpm install --frozen-lockfile
+
+dev:
+	pnpm dev
 
 clean:
-	rm -f db.json
-	rm -rf node_modules
-	rm -rf public
+	rm -rf node_modules dist .astro public/pagefind
 
-# upload in two steps, delete suprefluous files in second
+# upload in two steps, delete superfluous files in second
 up:
-	rsync -rtvz --chmod=D2755,F644 public/ cruftex@rsync.keycdn.com:cruftex/
-	rsync -rtvz --delete --chmod=D2755,F644 public/ cruftex@rsync.keycdn.com:cruftex/
+	rsync -rtvz --chmod=D2755,F644 dist/ cruftex@rsync.keycdn.com:cruftex/
+	rsync -rtvz --delete --chmod=D2755,F644 dist/ cruftex@rsync.keycdn.com:cruftex/
