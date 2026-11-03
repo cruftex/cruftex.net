@@ -21,6 +21,12 @@ All information, images, binaries provided on this website are protected by copy
 whatsoever requires my prior written consent and the source must be mentioned. Used third party
 elements contain a separate copyright notice.
 
-I do not not assume any liability or guarantee for the contents of internet pages to which links
-on this page directly or indirectly refers. Visitors follow connections to other web pages at their
+I do not assume any liability or guarantee for the contents of internet pages to which links
+on this page directly or indirectly refer. Visitors follow connections to other web pages at their
 own risk.
+
+## Analytics
+
+Page views are counted with [PostHog](https://posthog.com) on servers in the EU. This works
+without cookies, without local storage and without personal profiles: Visitors are counted via a
+hash that changes daily. No clicks are recorded and no sessions are replayed.

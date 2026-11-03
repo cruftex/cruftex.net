@@ -161,3 +161,7 @@ Kept deliberately small so upstream changes can be diffed in:
   tables (Part 2) from the old gnuplot SVGs, kept for provenance; the old
   gnuplot SVGs in the asset folders stay as backup and for old deep links
 - `public/favicon.svg`
+- `src/scripts/analytics.ts`: cookieless page statistics with PostHog EU
+  (`posthog-js`, token and host in the file; production builds only). The
+  PostHog project needs "cookieless server hash mode" switched on, otherwise
+  the events are dropped.
