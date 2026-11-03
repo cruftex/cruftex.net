@@ -41,3 +41,5 @@ db.json
 debug.log
 # charts are rendered at build time (src/charts/)
 *.chart.svg
+
+REFERENCE

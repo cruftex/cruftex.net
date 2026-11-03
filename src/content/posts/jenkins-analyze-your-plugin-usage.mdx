@@ -1,22 +1,22 @@
 ---
-title: "Jenkins: How to Analyze Your Plugin Usage"
+title: "Jenkins: How to Analyse Your Plugin Usage"
 pubDatetime: 2015-11-30T23:51:59+01:00
-description: "Ever wondered whether plugins in your Jenkins installation are really used at all? Or do you need to know what plugins you need to install, to take over some existing jobs from another Jenkins instance? Here is how you can find out about …"
+description: "Ever wondered whether plugins in your Jenkins installation are really used at all? Or do you need to know which plugins you need to install to take over some existing jobs from another Jenkins instance? Here is how you can find out about …"
 tags:
   - "Jenkins"
 legacyUrl: /2015/11/30/Jenkins-Analyze-Your-Plugin-Usage.html
 ---
-Ever wondered whether plugins in your Jenkins installation are really used at all? Or do you need to know what
-plugins you need to install, to take over some existing jobs from another Jenkins instance? Here is how you can find
-out about your plugin usage, and a tiny shell script to analyze your Jenkins configuration and get an index 
+Ever wondered whether plugins in your Jenkins installation are really used at all? Or do you need to know which
+plugins you need to install to take over some existing jobs from another Jenkins instance? Here is how you can find
+out about your plugin usage and a tiny shell script to analyse your Jenkins configuration and get an index of
 all the needed plugins.
 
 ## The XML Configuration Files
 
-Jenkins stores all its configuration in a bunch of XML Files in the jenkins-home directory. The layout of the
-directory is described [jenkins-ci: Administering Jenkins](https://wiki.jenkins-ci.org/display/JENKINS/Administering+Jenkins).
+Jenkins stores all its configuration in a bunch of XML files in the Jenkins home directory. The layout of the
+directory is described in [jenkins-ci: Administering Jenkins](https://wiki.jenkins-ci.org/display/JENKINS/Administering+Jenkins).
 
-Here is an example of a job configuration file, that contains a system groovy script:
+Here is an example of a job configuration file that contains a system Groovy script:
 
 ```` xml
 <?xml version='1.0' encoding='UTF-8'?>
@@ -33,16 +33,16 @@ Here is an example of a job configuration file, that contains a system groovy sc
 </project>
 ````
 
-The interesting part is the `plugin="groovy@1.27"` attribute, which contains the plugin name and the version of it.
-This information is used by jenkins to warn about missing plugins and to migrate older configuration versions
+The interesting part is the `plugin="groovy@1.27"` attribute, which contains the plugin name and its version.
+This information is used by Jenkins to warn about missing plugins and to migrate older configuration versions
 to new formats.
 
 So why not parse the XML files and extract the information?
 
 ## List Configuration Files with Plugin Usage Information
 
-For extracting the information from the XML files we use the shell script tools `xml2` and `awk`. The `xml2` utility
-converts an XML file to a simple line by line representation so you can parse it with standard unix tools like `grep` 
+For extracting the information from the XML files we use the shell tools `xml2` and `awk`. The `xml2` utility
+converts an XML file to a simple line by line representation so you can parse it with standard Unix tools like `grep`
 and `awk`.
 
 The `xml2` output of the above file is:
@@ -73,9 +73,9 @@ find . -maxdepth 3 -type f -name \*.xml -printf '%P\n' | while read I; do
   done | sort | awk -F^ '$1 != header { print "## "$1; header=$1; } { print "- "$2; }'
 ````
 
-This tiny script produces a Markdown formatted output with configuration file as headline and a list of the used
+This tiny script produces Markdown formatted output with the configuration file as headline and a list of the used
 plugins. Example output:
- 
+
 ```` markdown
 ## cloudbees-disk-usage-simple.xml
 - cloudbees-disk-usage-simple@0.5
@@ -129,22 +129,25 @@ The result:
 
 ## Missing Information with Workflow
 
-In the above example the job `build=cache2k` is a Maven job. But, with the new Jenkins Workflow plugin, things change 
-how you define your Jenkins jobs. Instead of a structured XML file, which contains the plugin configuration, 
-with workflow, a job is just a groovy script, or, to be more precise, a groovy-ish Workflow DSL. So, no plugin 
+In the above example the job `build=cache2k` is a Maven job. But with the new Jenkins Workflow plugin, the way
+you define your Jenkins jobs changes. Instead of a structured XML file which contains the plugin configuration,
+with Workflow a job is just a Groovy script, or, to be more precise, a Groovy-ish Workflow DSL. So, no plugin
 information any more, just script code.
-  
-It should be technically feasible to log the information of the used plugins at runtime. For this
+
+It should be technically feasible to log the information about the used plugins at runtime. For this
 I opened [JENKINS-31582](https://issues.jenkins-ci.org/browse/JENKINS-31582), please vote for it.
- 
+
 ## Alternatives
 
-There is a [Plugin Usage Plugin](http://documentation.cloudbees.com/docs/cje-user-guide/plugin-usage-using.html) in
-commercial CloudBees Jenkins Platform offering. There is also 
-[Plugin Usage Plugin Community](https://wiki.jenkins-ci.org/display/JENKINS/Plugin+Usage+Plugin+\(Community\))
+There is a [Plugin Usage Plugin](http://documentation.cloudbees.com/docs/cje-user-guide/plugin-usage-using.html) in the
+commercial CloudBees Jenkins Platform offering. There is also the
+[Plugin Usage Plugin Community](https://wiki.jenkins-ci.org/display/JENKINS/Plugin+Usage+Plugin+\(Community\)).
 
-While these plugins are useful, and just run OOTB, I think using the presented approach above has some values of
- its own:
- 
- * easily analyze a Jenkins configuration without running
- * Simple customizable text output, to be included in an infrastructure documentation
+While these plugins are useful and just run OOTB, I think the approach presented above has some value of
+its own:
+
+ * Easily analyse a Jenkins configuration without running it
+ * Simple customisable text output, to be included in an infrastructure documentation
+
+> [!NOTE]
+> Update 2026: Typo and wording fixes, switch to UK English.
