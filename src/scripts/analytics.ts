@@ -26,6 +26,16 @@ if (import.meta.env.PROD) {
     disable_session_recording: true,
   });
   document.addEventListener("astro:page-load", () => {
-    posthog.capture("$pageview");
+    // The 404 page is served by the CDN under the missing URL and marks
+    // itself with <meta name="http-status" content="404">.
+    const status = document
+      .querySelector('meta[name="http-status"]')
+      ?.getAttribute("content");
+    if (status === "404") {
+      posthog.capture("$pageview", { http_status: 404 });
+      posthog.capture("page_not_found", { path: location.pathname });
+    } else {
+      posthog.capture("$pageview");
+    }
   });
 }

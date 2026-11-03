@@ -164,4 +164,8 @@ Kept deliberately small so upstream changes can be diffed in:
 - `src/scripts/analytics.ts`: cookieless page statistics with PostHog EU
   (`posthog-js`, token and host in the file; production builds only). The
   PostHog project needs "cookieless server hash mode" switched on, otherwise
-  the events are dropped.
+  the events are dropped. `src/pages/404.astro` marks itself with
+  `<meta name="http-status" content="404">`; the script then sends the page
+  view with `http_status: 404` plus a `page_not_found` event with the path.
+  On bunny.net, set the storage zone's 404 file path (Error handling) to
+  `/404.html`, so the CDN serves the built page under the missing URL.

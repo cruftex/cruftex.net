@@ -12,6 +12,8 @@ const t = useTranslations(locale);
 ---
 
 <Layout title={`${t.notFound.title} | ${config.site.title}`}>
+  <!-- read by src/scripts/analytics.ts to report the missing page -->
+  <meta slot="head" name="http-status" content="404" />
   <Header />
 
   <main
