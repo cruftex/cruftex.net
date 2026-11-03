@@ -7,8 +7,13 @@ This is the personal blog of Jens Wilke, a software engineer based in Munich, Ge
 
 ## Contact
 
-Snail mail: Jens Wilke, Thalkirchnerstraße 125d, 81371 Munich, Germany
+Snail mail: Jens Wilke, Streitbergstr. 73a, 81249 Munich, Germany
+
 Mail: [blogabout@cruftex.net](mailto:blogabout@cruftex.net)
+
+GitHub: [github.com/cruftex](https://github.com/cruftex)
+
+LinkedIn: [linkedin.com/in/cruftex](https://www.linkedin.com/in/cruftex/)
 
 ## Legal
 

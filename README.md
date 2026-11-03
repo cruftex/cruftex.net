@@ -16,6 +16,9 @@ pnpm dev              # http://localhost:4321, shows drafts
 pnpm build            # dist/ (runs astro check, the build and the Pagefind index)
 pnpm preview          # serve dist/
 make up               # rsync dist/ to KeyCDN
+pnpm update && pnpm audit   # Dependabot alerts: refresh the lockfile; for
+                            # transitive packages `pnpm audit --fix` adds
+                            # overrides to pnpm-workspace.yaml
 ```
 
 ## Writing a post

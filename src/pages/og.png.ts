@@ -60,6 +60,9 @@ export const GET: APIRoute = async context => {
             type: "div",
             props: {
               style: {
+                // positioned, so it paints above the absolutely positioned
+                // shadow card (satori >= 0.63 uses CSS painting order)
+                position: "relative",
                 border: "4px solid #000",
                 background: "#fefbfb",
                 borderRadius: "4px",
