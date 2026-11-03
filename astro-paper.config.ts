@@ -26,6 +26,11 @@ export default defineAstroPaperConfig({
   },
   socials: [
     { name: "github", url: "https://github.com/cruftex" },
+    {
+      name: "linkedin",
+      url: "https://www.linkedin.com/in/cruftex/",
+      linkTitle: "Jens Wilke on LinkedIn",
+    },
     { name: "mail", url: "mailto:blogabout@cruftex.net" },
   ],
   // sharing buttons were removed from the old site on purpose
